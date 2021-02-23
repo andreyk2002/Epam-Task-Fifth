@@ -18,7 +18,7 @@ public class TextParserTest {
     private final static String ONE_SENTENCE_TEXT = "Hello text";
     private final static String FIRST_PARAGRAPH = "Welcome. It is test!";
     private final static String SECOND_PARAGRAPH = "Here is a new paragraph.";
-    private final static String MULTIPARAGRAPH_TEXT = FIRST_PARAGRAPH + "\n" + SECOND_PARAGRAPH;
+    private final static String MULTI_PARAGRAPHS_TEXT = FIRST_PARAGRAPH + "\n" + SECOND_PARAGRAPH;
 
     private Parser textParser;
 
@@ -65,7 +65,7 @@ public class TextParserTest {
         textParser = new TextParser(mockParser);
         Composite expected = new Composite(Arrays.asList(firstParagraph, secondParagraph));
 
-        Component result = textParser.parse(MULTIPARAGRAPH_TEXT);
+        Component result = textParser.parse(MULTI_PARAGRAPHS_TEXT);
 
         Assert.assertEquals(result, expected);
 

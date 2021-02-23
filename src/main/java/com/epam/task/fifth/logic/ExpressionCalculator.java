@@ -1,7 +1,5 @@
 package com.epam.task.fifth.logic;
 
-import com.epam.task.fifth.entities.Leaf;
-import com.epam.task.fifth.entities.LeafType;
 import com.epam.task.fifth.logic.expressions.*;
 
 import java.util.Arrays;
@@ -10,11 +8,10 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class ExpressionCalculator {
-    //TODO : move expressions to inner classes
+
     private static final String EXPRESSION_DELIMITER = " ";
     private static final String NUMBER_PATTERN = "^\\d+$";
 
-    //TODO : should the result be int or double
     public Integer calculate(String expression) {
         String[] elements = expression.split(EXPRESSION_DELIMITER);
         List<Expression> expressions = Arrays.stream(elements).map(element -> {

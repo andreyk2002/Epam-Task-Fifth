@@ -15,7 +15,6 @@ public class Composite implements Component {
         this.components = components;
     }
 
-
     public List<Component> getComponents(){
         return Collections.unmodifiableList(components);
     }
