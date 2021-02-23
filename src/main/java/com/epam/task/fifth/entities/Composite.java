@@ -1,6 +1,8 @@
 package com.epam.task.fifth.entities;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Composite implements Component {
 
@@ -12,6 +14,7 @@ public class Composite implements Component {
     public Composite(List<Component>components){
         this.components = components;
     }
+
 
     public List<Component> getComponents(){
         return Collections.unmodifiableList(components);
