@@ -2,10 +2,9 @@ package com.epam.task.fifth.logic;
 
 import com.epam.task.fifth.logic.expressions.*;
 
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
-import java.util.stream.Collectors;
 
 public class ExpressionCalculator {
 
@@ -13,28 +12,43 @@ public class ExpressionCalculator {
     private static final String NUMBER_PATTERN = "^\\d+$";
 
     public Integer calculate(String expression) {
+        List<Expression> expressions = parseExpression(expression);
+        return calculate(expressions);
+    }
+
+    private List<Expression> parseExpression(String expression) {
         String[] elements = expression.split(EXPRESSION_DELIMITER);
-        List<Expression> expressions = Arrays.stream(elements).map(element -> {
+        List<Expression> expressions = new ArrayList<>();
+        for (var element : elements) {
             if (element.matches(NUMBER_PATTERN)) {
                 int number = Integer.parseInt(element);
-                return new NonTerminalExpression(number);
+                expressions.add(new NonTerminalExpression(number));
             }
             switch (element) {
                 case "+":
-                    return new TerminalExpressionAdd();
+                    expressions.add(new TerminalExpressionAdd());
+                    break;
                 case "-":
-                    return new TerminalExpressionSubtract();
+                    expressions.add(new TerminalExpressionSubtract());
+                    break;
                 case "/":
-                    return new TerminalExpressionDivide();
+                    expressions.add(new TerminalExpressionDivide());
+                    break;
                 case "*":
-                    return new TerminalExpressionMultiply();
+                    expressions.add(new TerminalExpressionMultiply());
+                    break;
             }
-            return null;
-        }).collect(Collectors.toList());
-        Stack<Integer> stack = new Stack<>();
+        }
+        return expressions;
+    }
+
+
+    private Integer calculate(List<Expression> expressions) {
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
         for (var exp : expressions) {
             exp.interpret(stack);
         }
         return stack.pop();
     }
+
 }

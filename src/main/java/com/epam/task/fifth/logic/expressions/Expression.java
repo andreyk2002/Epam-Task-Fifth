@@ -1,8 +1,8 @@
 package com.epam.task.fifth.logic.expressions;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
 
 public interface Expression {
 
-    void interpret(Stack<Integer> stack);
+    void interpret(ArrayDeque<Integer> stack);
 }

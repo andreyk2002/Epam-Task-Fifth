@@ -23,7 +23,7 @@ public class SentenceParser extends AbstractParser {
     public Component parse(String input) {
         String[] lexemes = input.split(LEXEMES_DELIMITER);
         List<Component> lexemesComponents  = Arrays.stream(lexemes)
-                .map(item-> item.matches(EXPRESSION_PATTERN) ? new Leaf(item, LeafType.EXPRESSION) : new Leaf(item, LeafType.WORD))
+                .map(item -> item.matches(EXPRESSION_PATTERN) ? new Leaf(item, LeafType.EXPRESSION) : new Leaf(item, LeafType.WORD))
                 .collect(Collectors.toList());
         return new Composite(lexemesComponents);
     }

@@ -1,15 +1,13 @@
 package com.epam.task.fifth.logic.expressions;
 
-import com.epam.task.fifth.logic.expressions.Expression;
-
-import java.util.Stack;
+import java.util.ArrayDeque;
 
 public class TerminalExpressionSubtract  implements Expression {
     @Override
-    public void interpret(Stack<Integer> stack) {
-        int second = stack.pop();
+    public void interpret(ArrayDeque<Integer> stack) {
         int first = stack.pop();
-        int result = first - second;
+        int second = stack.pop();
+        int result = second - first;
         stack.push(result);
     }
 }

@@ -12,29 +12,11 @@ public class TextSorter {
 
 
     public Composite sortWordsByLength(Composite text) {
-        List<Component> components = text.getComponents();
-        List<Component> sortedParagraphs = components.stream()
+        List<Component> paragraphs = text.getComponents();
+        List<Component> sortedParagraphs = paragraphs.stream()
                 .map(paragraph -> sortParagraph((Composite) paragraph))
                 .collect(Collectors.toList());
         return new Composite(sortedParagraphs);
-    }
-
-    private Composite sortParagraph(Composite paragraph) {
-        List<Component> sentences = paragraph.getComponents();
-        List<Component> sortedSentences = sentences.stream()
-                .map(sentence -> {
-                    List<Component> sortedWords = sortWordsInSentence(sentence);
-                    return new Composite(sortedWords);
-                }).collect(Collectors.toList());
-        return new Composite(sortedSentences);
-    }
-
-    private List<Component> sortWordsInSentence(Component sentence) {
-        List<Component> components = ((Composite) sentence).getComponents();
-        return components.stream()
-                .map(word -> (Leaf) word)
-                .sorted(Comparator.comparingInt(firstWord -> firstWord.getValue().length()))
-                .collect(Collectors.toList());
     }
 
     public Composite sortParagraphsBySentencesCount(Composite text) {
@@ -46,6 +28,22 @@ public class TextSorter {
                 }))
                 .collect(Collectors.toList());
         return new Composite(newParagraphs);
+    }
+
+    private Composite sortParagraph(Composite paragraph) {
+        List<Component> sentences = paragraph.getComponents();
+        List<Component> sortedSentences = sentences.stream()
+                .map(sentence -> new Composite(sortWordsInSentence(sentence)))
+                .collect(Collectors.toList());
+        return new Composite(sortedSentences);
+    }
+
+    private List<Component> sortWordsInSentence(Component sentence) {
+        List<Component> components = ((Composite) sentence).getComponents();
+        return components.stream()
+                .map(word -> (Leaf) word)
+                .sorted(Comparator.comparingInt(firstWord -> firstWord.getValue().length()))
+                .collect(Collectors.toList());
     }
 
 }

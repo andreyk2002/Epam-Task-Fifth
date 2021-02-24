@@ -3,7 +3,7 @@ package com.epam.task.fifth.data;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.List;
 
 public class DataReader {
 
@@ -11,7 +11,6 @@ public class DataReader {
 
     public String read(String filename) throws IOException {
         List<String>lines = Files.readAllLines(Path.of(filename));
-        String result =  String.join(LINE_DELIMITER, lines);
-        return result;
+        return String.join(LINE_DELIMITER, lines);
     }
 }
