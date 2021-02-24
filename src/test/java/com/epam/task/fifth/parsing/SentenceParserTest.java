@@ -29,9 +29,7 @@ public class SentenceParserTest {
     @Test
     public void testParseShouldParseOneWordSentence(){
         Leaf sentenceWord = new Leaf(FIRST_WORD, LeafType.WORD);
-        AbstractParser parserMock = Mockito.mock(AbstractParser.class);
-        when(parserMock.parse(anyString())).thenReturn(sentenceWord);
-        sentenceParser = new SentenceParser(parserMock);
+        sentenceParser = new SentenceParser();
         Composite expected = new Composite(Collections.singletonList(sentenceWord));
 
         Component actual = sentenceParser.parse(FIRST_WORD);
@@ -46,15 +44,8 @@ public class SentenceParserTest {
         Leaf thirdLexeme = new Leaf(THIRD_WORD, LeafType.WORD);
         Leaf forthLexeme = new Leaf(FORTH_WORD, LeafType.WORD);
         Leaf fifthLexeme = new Leaf(FIFTH_WORD, LeafType.WORD);
-        AbstractParser parserMock = Mockito.mock(AbstractParser.class);
 
-        when(parserMock.parse(FIRST_WORD)).thenReturn(firstLexeme);
-        when(parserMock.parse(SECOND_WORD)).thenReturn(secondLexeme);
-        when(parserMock.parse(THIRD_WORD)).thenReturn(thirdLexeme);
-        when(parserMock.parse(FORTH_WORD)).thenReturn(forthLexeme);
-        when(parserMock.parse(FIFTH_WORD)).thenReturn(fifthLexeme);
-
-        sentenceParser = new SentenceParser(parserMock);
+        sentenceParser = new SentenceParser();
         Composite expected = new Composite(Arrays.asList(firstLexeme, secondLexeme,thirdLexeme,forthLexeme,fifthLexeme));
 
         Component actual = sentenceParser.parse(MULTI_WORD_SENTENCE);
