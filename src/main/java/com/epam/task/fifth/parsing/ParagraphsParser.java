@@ -4,12 +4,15 @@ import com.epam.task.fifth.entities.Component;
 import com.epam.task.fifth.entities.Composite;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ParagraphsParser extends AbstractParser {
 
     private final static String SENTENCE_DELIMITERS = "\\.{3}|[.!?]";
-
+    private final static String SENTENCE_PATTERN = "([^.{3}.!?]+)(\\.{3}|[\\.!?])";
 
     public ParagraphsParser(AbstractParser successor) {
         super(successor);
@@ -17,8 +20,14 @@ public class ParagraphsParser extends AbstractParser {
 
     @Override
     public Component parse(String input) {
-        String[] sentences = input.split(SENTENCE_DELIMITERS);
-        List<Component> sentencesComponents = Arrays.stream(sentences)
+        List<String>sentences = new ArrayList<>();
+        Pattern pattern = Pattern.compile(SENTENCE_PATTERN);
+        Matcher matcher = pattern.matcher(input);
+        while (matcher.find()){
+
+            sentences.add(matcher.group(0));
+        }
+       List<Component> sentencesComponents = sentences.stream()
                 .map(getSuccessor()::parse)
                 .collect(Collectors.toList());
         return new Composite(sentencesComponents);

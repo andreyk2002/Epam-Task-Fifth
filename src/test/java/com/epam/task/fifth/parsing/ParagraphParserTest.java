@@ -48,10 +48,10 @@ public class ParagraphParserTest {
 
         String multiSentenceParagraph = FIRST_SENTENCE + SECOND_SENTENCE + THIRD_SENTENCE + FORTH_SENTENCE;
         Component useWord = new Leaf("Use", LeafType.WORD);
-        Component caseWord = new Leaf("case", LeafType.WORD);
-        Component itWord = new Leaf("It",  LeafType.WORD);
-        Component whyWord = new Leaf("Why", LeafType.WORD);
-        Component nowWord = new Leaf("Now",  LeafType.WORD);
+        Component caseWord = new Leaf("case.", LeafType.WORD);
+        Component itWord = new Leaf("It...",  LeafType.WORD);
+        Component whyWord = new Leaf("Why?", LeafType.WORD);
+        Component nowWord = new Leaf("Now!",  LeafType.WORD);
 
         Composite firstSentence = new Composite(Arrays.asList(useWord, caseWord));
         Composite secondSentence = new Composite(Collections.singletonList(itWord));
