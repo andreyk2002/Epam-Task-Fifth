@@ -10,6 +10,7 @@ public class ParagraphsParser extends AbstractParser {
 
     private final static String SENTENCE_DELIMITERS = "\\.{3}|[.!?]";
 
+
     public ParagraphsParser(AbstractParser successor) {
         super(successor);
     }
