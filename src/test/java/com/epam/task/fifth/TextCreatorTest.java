@@ -1,7 +1,5 @@
 package com.epam.task.fifth;
 
-import com.epam.task.fifth.data.DataException;
-import com.epam.task.fifth.data.DataReader;
 import com.epam.task.fifth.entities.Component;
 import com.epam.task.fifth.entities.Composite;
 import com.epam.task.fifth.entities.Leaf;
@@ -15,31 +13,28 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Collections;
 
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 public class TextCreatorTest {
 
-    private static final String VALID_FILE = "Valid";
-    private static final String EMPTY_FILE = "Empty";
+    private static final String VALID_FILE = "src/test/resources/content.txt";
+    private static final String EMPTY_FILE = "src/test/resources/empty.txt";
     private static final Component VALID_CONTEXT = new Leaf("Text", LeafType.WORD);
     private TextCreator creator;
 
 
     @BeforeMethod
     public void setUp() throws IOException {
-        DataReader readerMock = Mockito.mock(DataReader.class);
 
         String validInput = "Text";
         String emptyInput = "";
 
-        when(readerMock.read(VALID_FILE)).thenReturn(validInput);
-        when(readerMock.read(EMPTY_FILE)).thenReturn(emptyInput);
-
         TextParser parserMock = Mockito.mock(TextParser.class);
-        when(parserMock.parse(validInput)).thenReturn(new Composite(Collections.singletonList(VALID_CONTEXT)));
+        when(parserMock.parse(anyString())).thenReturn(new Composite(Collections.singletonList(VALID_CONTEXT)));
         when(parserMock.parse(emptyInput)).thenReturn(new Composite(Collections.emptyList()));
 
-        creator = new TextCreator(readerMock, parserMock);
+        creator = new TextCreator(parserMock);
     }
 
     @Test

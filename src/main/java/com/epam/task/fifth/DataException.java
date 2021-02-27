@@ -1,8 +1,8 @@
-package com.epam.task.fifth.data;
+package com.epam.task.fifth;
 
 import java.io.IOException;
 
-public class DataException extends Throwable {
+public class DataException extends Exception {
     public DataException() {
     }
 
@@ -11,6 +11,5 @@ public class DataException extends Throwable {
     }
 
     public DataException(String message, IOException e) {
-        super(message, e);
     }
 }
