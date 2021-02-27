@@ -28,7 +28,7 @@ public class SentenceParserTest {
 
     @Test
     public void testParseShouldParseOneWordSentence(){
-        Leaf sentenceWord = new Leaf(FIRST_WORD, LeafType.WORD);
+        Leaf sentenceWord = Leaf.word(FIRST_WORD);
         sentenceParser = new SentenceParser();
         Composite expected = new Composite(Collections.singletonList(sentenceWord));
 
@@ -39,11 +39,11 @@ public class SentenceParserTest {
 
     @Test
     public void testParseShouldParseMultiWordSentence(){
-        Leaf firstLexeme = new Leaf(FIRST_WORD, LeafType.WORD);
-        Leaf secondLexeme = new Leaf(SECOND_WORD, LeafType.WORD);
-        Leaf thirdLexeme = new Leaf(THIRD_WORD, LeafType.WORD);
-        Leaf forthLexeme = new Leaf(FORTH_WORD, LeafType.WORD);
-        Leaf fifthLexeme = new Leaf(FIFTH_WORD, LeafType.WORD);
+        Leaf firstLexeme = Leaf.word(FIRST_WORD);
+        Leaf secondLexeme = Leaf.word(SECOND_WORD);
+        Leaf thirdLexeme = Leaf.word(THIRD_WORD);
+        Leaf forthLexeme = Leaf.word(FORTH_WORD);
+        Leaf fifthLexeme = Leaf.word(FIFTH_WORD);
 
         sentenceParser = new SentenceParser();
         Composite expected = new Composite(Arrays.asList(firstLexeme, secondLexeme,thirdLexeme,forthLexeme,fifthLexeme));

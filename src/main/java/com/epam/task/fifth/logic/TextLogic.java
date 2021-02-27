@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class TextLogic {
 
     private static final String WORD_DELIMITER = " ";
-    private static final String SENTENCE_DELIMITER = ".";
+    private static final String SENTENCE_DELIMITER = "";
     private static final String PARAGRAPH_DELIMITER = "\n";
 
     public String restore(Composite text) {

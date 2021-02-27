@@ -13,15 +13,15 @@ import java.util.List;
 
 public class TextSorterTest {
 
-    private static final Leaf SORT_WORD = new Leaf("sort", LeafType.WORD);
-    private static final Leaf IT_WORD = new Leaf("It", LeafType.WORD);
-    private static final Leaf BY_WORD = new Leaf("by", LeafType.WORD);
-    private static final Leaf WORDS_WORD = new Leaf("words", LeafType.WORD);
-    private static final Leaf LENGTH_WORD = new Leaf("length", LeafType.WORD);
-    private static final Leaf WAS_WORD = new Leaf("was", LeafType.WORD);
-    private static final Leaf SOME_WORD = new Leaf("Some", LeafType.WORD);
-    private static final Leaf WB_WORD = new Leaf("wb", LeafType.WORD);
-    private static final Leaf A_WORD = new Leaf("a", LeafType.WORD);
+    private static final Leaf SORT_WORD = Leaf.word("sort");
+    private static final Leaf IT_WORD = Leaf.word("It");
+    private static final Leaf BY_WORD = Leaf.word("by");
+    private static final Leaf WORDS_WORD = Leaf.word("words");
+    private static final Leaf LENGTH_WORD = Leaf.word("length");
+    private static final Leaf WAS_WORD = Leaf.word("was");
+    private static final Leaf SOME_WORD = Leaf.word("Some");
+    private static final Leaf WB_WORD = Leaf.word("wb");
+    private static final Leaf A_WORD = Leaf.word("a");
     private final TextSorter sorter = new TextSorter();
 
     @Test
@@ -76,8 +76,7 @@ public class TextSorterTest {
 
     @Test
     public void testSortParagraphsBySentencesShouldSortInSingleParagraphText() {
-        List<Component> words = Arrays.asList(SORT_WORD, IT_WORD,
-                BY_WORD, WORDS_WORD, LENGTH_WORD);
+        List<Component> words = Arrays.asList(SORT_WORD, IT_WORD, BY_WORD, WORDS_WORD, LENGTH_WORD);
         Composite sentence = new Composite(words);
         Composite paragraphs = new Composite(Collections.singletonList(sentence));
         Composite text = new Composite(Collections.singletonList(paragraphs));
@@ -92,12 +91,12 @@ public class TextSorterTest {
 
     @Test
     public void testSortParagraphsBySentenceShouldSortInInMultiSentenceParagraph() {
-        List<Component> firstSentenceWords = Collections.singletonList(new Leaf("A", LeafType.WORD));
-        List<Component> secondSentenceWords = Collections.singletonList(new Leaf("B", LeafType.WORD));
-        List<Component> thirdSentenceWords = Collections.singletonList(new Leaf("C", LeafType.WORD));
-        List<Component> forthSentenceWords = Collections.singletonList(new Leaf("D", LeafType.WORD));
-        List<Component> fifthSentenceWords = Collections.singletonList(new Leaf("E", LeafType.WORD));
-        List<Component> sixthSentenceWords = Collections.singletonList(new Leaf("F", LeafType.WORD));
+        List<Component> firstSentenceWords = Collections.singletonList(Leaf.word("A"));
+        List<Component> secondSentenceWords = Collections.singletonList(Leaf.word("B"));
+        List<Component> thirdSentenceWords = Collections.singletonList(Leaf.word("C"));
+        List<Component> forthSentenceWords = Collections.singletonList(Leaf.word("D"));
+        List<Component> fifthSentenceWords = Collections.singletonList(Leaf.word("E"));
+        List<Component> sixthSentenceWords = Collections.singletonList(Leaf.word("F"));
 
 
         Composite firstSentence = new Composite(firstSentenceWords);

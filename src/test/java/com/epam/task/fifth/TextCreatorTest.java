@@ -21,7 +21,7 @@ public class TextCreatorTest {
 
     private static final String VALID_FILE = "Valid";
     private static final String EMPTY_FILE = "Empty";
-    private static final Component VALID_CONTEXT = new Leaf("Text", LeafType.WORD);
+    private static final Component VALID_CONTEXT = Leaf.word("Text");
     private TextCreator creator;
 
 

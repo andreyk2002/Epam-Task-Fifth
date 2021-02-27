@@ -20,8 +20,8 @@ public class TextLogicTest {
 
     @Test
     public void testRestoreShouldRestoreSimpleText(){
-        Component firstWorld = new Leaf("Hello", LeafType.WORD);
-        Component secondWord = new Leaf("text",  LeafType.WORD);
+        Component firstWorld = Leaf.word("Hello");
+        Component secondWord = Leaf.word("text.");
         Composite sentence = new Composite(Arrays.asList(firstWorld, secondWord));
         Composite paragraph = new Composite(Collections.singletonList(sentence));
         Composite text = new Composite(Collections.singletonList(paragraph));
@@ -36,14 +36,14 @@ public class TextLogicTest {
     @Test
     public void testParseShouldSingleParagraphText(){
 
-        Component welcomeWord = new Leaf("Welcome", LeafType.WORD);
-        Component itWord = new Leaf("It",  LeafType.WORD);
-        Component isWord = new Leaf("is", LeafType.WORD);
-        Component testWord = new Leaf("test",  LeafType.WORD);
-        Component hereWord = new Leaf("Here", LeafType.WORD);
-        Component aWord = new Leaf("a",  LeafType.WORD);
-        Component newWord = new Leaf("new", LeafType.WORD);
-        Component paragraphWord = new Leaf("paragraph",  LeafType.WORD);
+        Component welcomeWord = Leaf.word("Welcome!");
+        Component itWord = Leaf.word("It");
+        Component isWord = Leaf.word("is");
+        Component testWord = Leaf.word("test.");
+        Component hereWord = Leaf.word("Here");
+        Component aWord = Leaf.word("a");
+        Component newWord = Leaf.word("new");
+        Component paragraphWord = Leaf.word("paragraph.");
 
         Composite firstSentence = new Composite(Collections.singletonList(welcomeWord));
         Composite secondSentence = new Composite(Arrays.asList(itWord, isWord, testWord));
@@ -54,7 +54,7 @@ public class TextLogicTest {
 
         Composite text = new Composite(Arrays.asList(firstParagraph, secondParagraph));
 
-        String expected = "Welcome.It is test." + "\n" + "Here is a new paragraph.";
+        String expected = "Welcome!It is test." + "\n" + "Here is a new paragraph.";
 
         String result = logic.restore(text);
 

@@ -11,6 +11,14 @@ public class Leaf implements Component {
         this.type = type;
     }
 
+    public static Leaf word(String value){
+        return new Leaf(value, LeafType.WORD);
+    }
+
+    public static Leaf expression(String value){
+        return new Leaf(value, LeafType.EXPRESSION);
+    }
+
     public String getValue(){
         return value;
     }

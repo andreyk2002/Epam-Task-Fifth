@@ -22,11 +22,10 @@ public class TextParserTest {
 
     private Parser textParser;
 
-
     @Test
     public void testParseShouldSingleSentenceText(){
-        Component firstWorld = new Leaf("Hello", LeafType.WORD);
-        Component secondWord = new Leaf("text",  LeafType.WORD);
+        Component firstWorld = Leaf.word("Hello");
+        Component secondWord = Leaf.word("text");
         Composite sentence = new Composite(Arrays.asList(firstWorld, secondWord));
         AbstractParser mockParser = Mockito.mock(AbstractParser.class);
         when(mockParser.parse(ONE_SENTENCE_TEXT)).thenReturn(sentence);
@@ -42,14 +41,14 @@ public class TextParserTest {
     @Test
     public void testParseShouldSingleParagraphText(){
 
-        Component welcomeWord = new Leaf("Welcome", LeafType.WORD);
-        Component itWord = new Leaf("It",  LeafType.WORD);
-        Component isWord = new Leaf("is", LeafType.WORD);
-        Component testWord = new Leaf("test",  LeafType.WORD);
-        Component hereWord = new Leaf("Here", LeafType.WORD);
-        Component aWord = new Leaf("a",  LeafType.WORD);
-        Component newWord = new Leaf("new", LeafType.WORD);
-        Component paragraphWord = new Leaf("paragraph",  LeafType.WORD);
+        Component welcomeWord = Leaf.word("Welcome");
+        Component itWord = Leaf.word("It");
+        Component isWord = Leaf.word("is");
+        Component testWord = Leaf.word("test");
+        Component hereWord = Leaf.word("Here");
+        Component aWord = Leaf.word("a");
+        Component newWord = Leaf.word("new");
+        Component paragraphWord = Leaf.word("paragraph");
 
         Composite firstSentence = new Composite(Collections.singletonList(welcomeWord));
         Composite secondSentence = new Composite(Arrays.asList(itWord, isWord, testWord));
