@@ -3,7 +3,6 @@ package com.epam.task.fifth.parsing;
 import com.epam.task.fifth.entities.Component;
 import com.epam.task.fifth.entities.Composite;
 import com.epam.task.fifth.entities.Leaf;
-import com.epam.task.fifth.entities.LeafType;
 import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
