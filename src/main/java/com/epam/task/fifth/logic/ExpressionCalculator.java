@@ -13,7 +13,7 @@ public class ExpressionCalculator {
 
     public Integer calculate(String expression) {
         List<Expression> expressions = parseExpression(expression);
-        return calculate(expressions);
+        return calculateExpressions(expressions);
     }
 
     private List<Expression> parseExpression(String expression) {
@@ -43,7 +43,7 @@ public class ExpressionCalculator {
     }
 
 
-    private Integer calculate(List<Expression> expressions) {
+    private Integer calculateExpressions(List<Expression> expressions) {
         ArrayDeque<Integer> stack = new ArrayDeque<>();
         for (var exp : expressions) {
             exp.interpret(stack);

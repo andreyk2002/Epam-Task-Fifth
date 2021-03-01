@@ -11,28 +11,28 @@ public class Leaf implements Component {
         this.type = type;
     }
 
-    public static Leaf word(String value){
+    public static Leaf word(String value) {
         return new Leaf(value, LeafType.WORD);
     }
 
-    public static Leaf expression(String value){
+    public static Leaf expression(String value) {
         return new Leaf(value, LeafType.EXPRESSION);
     }
 
-    public String getValue(){
+    public String getValue() {
         return value;
     }
 
-    public LeafType getType(){
+    public LeafType getType() {
         return type;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
         }
-        if (!(o instanceof Leaf)){
+        if (!(o instanceof Leaf)) {
             return false;
         }
 

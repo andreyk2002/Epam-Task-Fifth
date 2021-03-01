@@ -31,9 +31,7 @@ public class TextLogic {
             String restoredSentence = restoreSentence((Composite) sentence);
             sentencesString.add(restoredSentence);
         }
-        String paragraphString = String.join(SENTENCE_DELIMITER, sentencesString);
-        paragraphString += SENTENCE_DELIMITER;
-        return paragraphString;
+        return String.join(SENTENCE_DELIMITER, sentencesString);
     }
 
     private String restoreSentence(Composite sentence) {

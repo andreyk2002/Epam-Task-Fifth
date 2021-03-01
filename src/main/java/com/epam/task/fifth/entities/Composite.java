@@ -8,18 +8,19 @@ public class Composite implements Component {
 
     private final List<Component> components;
 
-    public Composite(){
+    public Composite() {
         this.components = new ArrayList<>();
     }
-    public Composite(List<Component>components){
+
+    public Composite(List<Component> components) {
         this.components = components;
     }
 
-    public List<Component> getComponents(){
+    public List<Component> getComponents() {
         return Collections.unmodifiableList(components);
     }
 
-    public Component getChild(int index){
+    public Component getChild(int index) {
         return components.get(index);
     }
 
