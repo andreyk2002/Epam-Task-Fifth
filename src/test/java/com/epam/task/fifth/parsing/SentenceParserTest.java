@@ -1,0 +1,55 @@
+package com.epam.task.fifth.parsing;
+
+import com.epam.task.fifth.entities.Component;
+import com.epam.task.fifth.entities.Composite;
+import com.epam.task.fifth.entities.Leaf;
+import com.epam.task.fifth.entities.LeafType;
+import org.mockito.Mockito;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.when;
+
+public class SentenceParserTest {
+
+    private static final String FIRST_WORD = "It";
+    private static final String SECOND_WORD = "survived";
+    private static final String THIRD_WORD = "-";
+    private static final String FORTH_WORD = "5,";
+    private static final String FIFTH_WORD = "but";
+
+    private static final String MULTI_WORD_SENTENCE = "It survived - 5, but";
+
+    private Parser sentenceParser;
+
+    @Test
+    public void testParseShouldParseOneWordSentence(){
+        Leaf sentenceWord = Leaf.word(FIRST_WORD);
+        sentenceParser = new SentenceParser();
+        Composite expected = new Composite(Collections.singletonList(sentenceWord));
+
+        Component actual = sentenceParser.parse(FIRST_WORD);
+
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testParseShouldParseMultiWordSentence(){
+        Leaf firstLexeme = Leaf.word(FIRST_WORD);
+        Leaf secondLexeme = Leaf.word(SECOND_WORD);
+        Leaf thirdLexeme = Leaf.word(THIRD_WORD);
+        Leaf forthLexeme = Leaf.word(FORTH_WORD);
+        Leaf fifthLexeme = Leaf.word(FIFTH_WORD);
+
+        sentenceParser = new SentenceParser();
+        Composite expected = new Composite(Arrays.asList(firstLexeme, secondLexeme,thirdLexeme,forthLexeme,fifthLexeme));
+
+        Component actual = sentenceParser.parse(MULTI_WORD_SENTENCE);
+
+        Assert.assertEquals(actual, expected);
+    }
+}
